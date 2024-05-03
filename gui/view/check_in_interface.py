@@ -17,8 +17,10 @@ from gui import config
 
 def can_check_in():
     warnings = ""
-    if config.chosenSchedule is None or config.startTime == "" or config.endTime == "":
+    if config.chosenSchedule is None:
         warnings = "请先设置考勤课程与时间"
+    elif config.startTime == "" or config.endTime == "":
+        warnings = "请先设置签到时间"
     elif datetime.strptime(config.startTime, '%Y-%m-%d %H:%M:%S') > datetime.now():
         warnings = "尚未开启签到"
     return warnings == "", warnings

@@ -56,7 +56,7 @@ class SettingsInterface(Ui_settingsInterface, QWidget):
         self.updateClassroomComboBox()
 
     def updateClassroomComboBox(self):
-        if len(self.classrooms):
+        if len(self.classes):
             self.classes.clear()
             self.classComboBox.clear()
         if 0 <= self.classroomComboBox.currentIndex() < len(self.classrooms):

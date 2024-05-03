@@ -41,12 +41,15 @@ class DashboardInterface(Ui_dashboardInterface, QWidget):
         stats = [x[5] for x in attendances_raw]
         self.signed.clear()
         self.unsigned.clear()
-        for student in students:
-            for i in range(len(attendances)):
-                if student.uid == attendances[i]:
-                    self.signed.append((student, stats[i]))
-                else:
-                    self.unsigned.append(student)
+        if not len(attendances):
+            self.unsigned.extend(students)
+        else:
+            for student in students:
+                for i in range(len(attendances)):
+                    if student.uid == attendances[i]:
+                        self.signed.append((student, stats[i]))
+                    else:
+                        self.unsigned.append(student)
         studentDB.close()
         attendanceDB.close()
 
